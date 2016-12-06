@@ -8,7 +8,7 @@
 
   <div class="col-sm-8 col-sm-offset-2">
         <h1>这是一个我们要用angular2验证的表单</h1>
-        <form class="DEMO-form">
+        <form class="DEMO-form" #userForm="ngForm" (ngSubmit)="handleSubmit()">
             <div class="form-group">
                 <label for="username">姓名</label>
                 <input type="text" name="username" [(ngModel)]="user.username" class="form-control" id="username"
@@ -33,7 +33,7 @@
                     <option value="orange">orange</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-default">提交</button>
+            <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">提交</button>
         </form>
     </div>
     
@@ -101,5 +101,7 @@
             )
         }
 
-
+        handleSubmit() {
+            alert(this.user.username + this.user.email + this.user.motto + this.user.favorite);
+        }
     }
