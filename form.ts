@@ -1,44 +1,48 @@
-表单中的class是不停变化的，所有给不同状态添加不同的样式
-  form .ng-valid[required] {
-      border: 1px solid #42A948;
-  }
-  form .ng-invalid {
-      border: 1px solid #a94442;
-  }
+    // 表单中的class是不停变化的，所有给不同状态添加不同的样式
+      form .ng-valid[required] {
+          border: 1px solid #42A948;
+      }
+      form .ng-invalid {
+          border: 1px solid #a94442;
+      }
 
-  <div class="col-sm-8 col-sm-offset-2">
-        <h1>这是一个我们要用angular2验证的表单</h1>
-        <form class="DEMO-form" #userForm="ngForm" (ngSubmit)="handleSubmit()">
-            <div class="form-group">
-                <label for="username">姓名</label>
-                <input type="text" name="username" [(ngModel)]="user.username" class="form-control" id="username"
-                       placeholder="Username" required />
+    // html界面
+    <div class="container">
+        <div class="DEMO-form-container row">
+            <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                <h2 class="text-center">angular2验证的表单</h2>
+                <form class="DEMO-form" #userForm="ngForm" (ngSubmit)="handleSubmit()">
+                    <div class="form-group">
+                        <label for="username">姓名</label>
+                        <input type="text" name="username" [(ngModel)]="user.username" class="form-control" id="username"
+                               placeholder="Username" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" [(ngModel)]="user.email" class="form-control" id="email"
+                               placeholder="Email" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="motto">密码</label>
+                        <input type="text" name="motto" [(ngModel)]="user.motto" class="form-control" id="motto"
+                               placeholder="Motto" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="favorite">喜欢的水果</label>
+                        <select id="favorite" name="favorite" class="form-control" [(ngModel)]="user.favorite">
+                            <option value="apple">apple</option>
+                            <option value="banana">banana</option>
+                            <option value="pear">pear</option>
+                            <option value="orange">orange</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">提交</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" [(ngModel)]="user.email" class="form-control" id="email"
-                       placeholder="Email" required />
-            </div>
-            <div class="form-group">
-                <label for="motto">密码</label>
-                <input type="text" name="motto" [(ngModel)]="user.motto" class="form-control" id="motto"
-                       placeholder="Motto" required />
-            </div>
-            <div class="form-group">
-                <label for="favorite">喜欢的水果</label>
-                <select id="favorite" name="favorite" class="form-control" [(ngModel)]="user.favorite">
-                    <option value="apple">apple</option>
-                    <option value="banana">banana</option>
-                    <option value="pear">pear</option>
-                    <option value="orange">orange</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">提交</button>
-        </form>
+        </div>
     </div>
     
-    
-    
+    // 组件
     // 定义数据类型, 如果实例化Hero对象就立马初始化数据。
     export class Hero {
         id: number;
